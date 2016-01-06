@@ -4,7 +4,7 @@
 *.pyc
 sbt/*.jar
 project/*.lock
-
+twitter.properties
 # sbt specific
 .cache/
 .history/
