@@ -1,8 +1,5 @@
 # Basic Spark Examples for IoT Presentation
-
-## Highlights
-
-- 
+http://markglh.github.io/BigData-IoT-Presentation-Slides
 
 ## Versions
 - Spark 1.6.0
