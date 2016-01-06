@@ -33,7 +33,9 @@ object StatefulStreamCount {
     def stateMappingFunc(batchTime: Time, key: String,
                          value: Option[Int],
                          state: State[Long]): Option[(String, Long)] = {
-      val sum = value.getOrElse(0).toLong + state.getOption.getOrElse(0L)
+      val currentVal = value.getOrElse(0).toLong
+      val aggVal = state.getOption.getOrElse(0L)
+      val sum = currentVal + aggVal
       val output = (key, sum)
       state.update(sum)
       Some(output)

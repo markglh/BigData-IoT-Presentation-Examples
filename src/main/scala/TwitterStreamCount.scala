@@ -43,7 +43,7 @@ object TwitterStreamCount {
     val sortedTagCounts = tagCountsOverWindow
       //Swap the key and value to make sorting easier
       //This requires shuffling data as we're swapping the keys around
-      .map { case (topic, count) => (count, topic) }
+      .map { case (hashtag, count) => (count, hashtag) }
       .transform(_.sortByKey(false))
 
     //Print the Top 10
