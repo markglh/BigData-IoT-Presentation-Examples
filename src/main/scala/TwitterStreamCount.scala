@@ -1,7 +1,9 @@
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming._
+import org.apache.spark.streaming.dstream.ReceiverInputDStream
 import org.apache.spark.streaming.twitter.TwitterUtils
+import twitter4j.Status
 
 /**
   * This parses hashtags out of tweets and counts them over 60 second windows
@@ -21,7 +23,7 @@ object TwitterStreamCount {
     ssc.checkpoint("./checkpoint") // We need somewhere to store the state
 
     //Receive all tweets unfiltered
-    val stream = TwitterUtils.createStream(ssc, None)
+    val stream: ReceiverInputDStream[Status] = TwitterUtils.createStream(ssc, None)
 
     //We're not doing anything fancy with re-tweets etc
     //Split tweets into words

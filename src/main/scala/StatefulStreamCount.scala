@@ -1,6 +1,7 @@
 
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming._
+import org.apache.spark.streaming.dstream.ReceiverInputDStream
 
 object StatefulStreamCount {
   def main(args: Array[String]) {
@@ -15,7 +16,7 @@ object StatefulStreamCount {
     // Create a ReceiverInputDStream using the DummySource
     // We could obviously swap this for a socketTextStream or other true receiver
     // However this is much easier to demonstrate
-    val stream = ssc.receiverStream(new DummySource(ratePerSec = 1))
+    val stream: ReceiverInputDStream[String] = ssc.receiverStream(new DummySource(ratePerSec = 1))
     val wordDStream = stream.flatMap(_.split(" ")).map(x => (x, 1))
 
 

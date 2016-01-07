@@ -1,3 +1,4 @@
+import org.apache.spark.rdd.RDD
 import org.apache.spark.{SparkConf, SparkContext}
 
 
@@ -11,7 +12,7 @@ object BasicWordCount {
 
     val sc = new SparkContext(conf)
 
-    val input = sc.textFile("words.txt") //load the file
+    val input: RDD[String] = sc.textFile("words.txt") //load the file into an RDD
 
     sc.parallelize(List(1, 2, 3)).reduce(_ + _)
     println(input.count())

@@ -1,6 +1,7 @@
 import org.apache.spark._
 import org.apache.spark.rdd.RDD
 import org.apache.spark.streaming._
+import org.apache.spark.streaming.dstream.InputDStream
 
 import scala.collection.mutable
 
@@ -23,7 +24,7 @@ object StreamWordCount {
     rddQueue += context.textFile("words3.txt")
 
     //the queue acts as the source receiver, removing one item each time
-    val streamBatches = ssc.queueStream(rddQueue, oneAtATime = true)
+    val streamBatches: InputDStream[String] = ssc.queueStream(rddQueue, oneAtATime = true)
     val words = streamBatches.flatMap(_.split(" "))
 
     val pairs = words.map(word => (word, 1))
