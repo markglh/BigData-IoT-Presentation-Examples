@@ -19,8 +19,6 @@ object BasicWordCount {
     // Split up into words.
     val words = input.flatMap(line => line.split(" "))
 
-    println("Debug String: " + words.toDebugString)
-
     val counts = words
       .map(word => (word, 1)) //pair each word with 1
       .reduceByKey { case (x, y) => x + y } //combine all matching words
